@@ -45,14 +45,25 @@ public class GetAllLinkTexts {
 		
 		
 		// Thread sleep      ------ Wait type 4
-		new WebDriverWait(driver, 100).until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("a"), 100));
+		new WebDriverWait(driver, 10).until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("a"), 30));
 		
 		List<WebElement> allAnchorTags = driver.findElements(By.tagName("a"));
 		int listSize = allAnchorTags.size();
 		
-		Assert.assertTrue("There are no anchor tags and list size is " + listSize, listSize<0);
+		Assert.assertTrue("There are no anchor tags and list size is " + listSize, listSize>0);
+		
 		
 		System.out.println("List size is " + listSize);
+		String anchorName = null;
+		for (int i = 0; i <allAnchorTags.size() ; i++) {
+			anchorName = allAnchorTags.get(i).getText();
+			
+			System.out.println(i+". " + anchorName);
+		}
+		
+//		for (WebElement webElement : allAnchorTags) {
+//			System.out.println(webElement.getText());
+//		}
 	}
 	
 	@After
